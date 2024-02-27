@@ -22,11 +22,11 @@ repository               : "academicpages/academicpages.github.io"
 author:
   # Biographic information
   avatar           : "profile.png"
-  name             : "Yundaichuan Zhan"
+  name             : "Yundaichuan Zhan(詹云岱川)"
   pronouns         : # example: "she/her"  
-  bio              : "self-discipline"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  bio              : "Xi'an Jiaotong University"
+  location         : "China Xi'an"
+  employer         :
   uri              : # URL
   email            : "pingchuancc@gmai.com" 
 
