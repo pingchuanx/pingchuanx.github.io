@@ -1,0 +1,238 @@
+.llm-timeline-page {
+  margin-top: 1rem;
+}
+
+.llm-timeline-lead {
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+}
+
+.llm-timeline-panel {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.llm-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+  align-items: start;
+}
+
+.llm-timeline-field label,
+.llm-timeline-mode legend,
+.llm-timeline-checkbox-group-title {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.llm-timeline-field input[type="search"],
+.llm-timeline-field select {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+  background: white;
+}
+
+.llm-timeline-mode {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.llm-timeline-mode-options,
+.llm-timeline-inline-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 1rem;
+}
+
+.llm-timeline-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.llm-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.92rem;
+}
+
+.llm-chip input {
+  margin: 0;
+}
+
+.llm-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.llm-toolbar-meta {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+.llm-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.llm-button {
+  border: 1px solid #d1d5db;
+  background: white;
+  border-radius: 10px;
+  padding: 0.55rem 0.85rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.llm-button:hover {
+  background: #f3f4f6;
+}
+
+.llm-empty {
+  border: 1px dashed #cbd5e1;
+  background: #f8fafc;
+  border-radius: 14px;
+  padding: 1rem;
+  color: #475569;
+}
+
+.llm-year-group {
+  margin-bottom: 1.5rem;
+}
+
+.llm-year-heading {
+  margin: 1.25rem 0 0.75rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+
+.llm-list {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 1.25rem;
+  list-style: none;
+}
+
+.llm-list::before {
+  content: "";
+  position: absolute;
+  left: 0.34rem;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  width: 2px;
+  background: #dbe4ee;
+}
+
+.llm-item {
+  position: relative;
+  margin: 0 0 1rem;
+}
+
+.llm-item::before {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  top: 1.05rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #2563eb;
+  box-shadow: 0 0 0 3px #dbeafe;
+}
+
+.llm-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.llm-card-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.llm-title {
+  margin: 0;
+  font-size: 1.08rem;
+}
+
+.llm-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.llm-badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 0.2rem 0.55rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.llm-paper {
+  margin: 0.25rem 0 0.5rem;
+}
+
+.llm-notes {
+  margin: 0.5rem 0 0;
+  color: #4b5563;
+  font-size: 0.95rem;
+}
+
+.llm-company-group {
+  margin-bottom: 2rem;
+}
+
+.llm-company-heading {
+  margin: 1.25rem 0 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+  border-left: 4px solid #2563eb;
+  border-radius: 10px;
+}
+
+.llm-schema {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+}
+
+.llm-schema pre {
+  margin: 0.75rem 0 0;
+  overflow-x: auto;
+}
+
+@media (max-width: 768px) {
+  .llm-card-top {
+    flex-direction: column;
+  }
+}
