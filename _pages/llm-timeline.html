@@ -7,101 +7,41 @@ author_profile: true
 
 <link rel="stylesheet" href="{{ '/assets/css/llm-timeline.css' | relative_url }}">
 
-<div class="llm-overview-page">
-  <!-- 第一屏 Hero -->
-  <section class="llm-hero">
-    <div class="llm-hero__text">
-      <p class="llm-hero__eyebrow">Structured Research Timeline</p>
-      <h1 class="llm-hero__title">LLM Timeline Atlas</h1>
-      <p class="llm-hero__desc">
-        面向大模型家族演化的长期资料库。你可以先总览全局，再聚焦某一年，
-        或切换到单公司 / 多公司对比视图。
-      </p>
+<div class="llm-timeline-page">
+  <p class="llm-timeline-lead">
+    这一页采用表格式时间线：第一行是公司名，具体显示哪些公司由上方勾选决定；从上到下按日期从近到远排列；每遇到新的年份，就插入一整行年份标记帮助区分，例如 2025、2024。
+  </p>
+
+  <div class="llm-timeline-panel">
+    <div class="llm-panel-title">选择要展示的公司</div>
+    <div id="company-filters" class="llm-company-filters"></div>
+  </div>
+
+  <div class="llm-toolbar">
+    <div class="llm-toolbar-meta" id="result-count">当前显示 0 家公司，0 条记录</div>
+    <div class="llm-actions">
+      <button id="select-all-companies" class="llm-button" type="button">全选公司</button>
+      <button id="clear-companies" class="llm-button" type="button">清空公司</button>
+      <button id="reset-filters" class="llm-button" type="button">恢复默认</button>
     </div>
+  </div>
 
-    <div class="llm-hero__summary" id="hero-summary">
-      <div class="llm-summary-card">
-        <div class="llm-summary-card__label">覆盖年份</div>
-        <div class="llm-summary-card__value" id="stat-years">-</div>
-      </div>
-      <div class="llm-summary-card">
-        <div class="llm-summary-card__label">公司数量</div>
-        <div class="llm-summary-card__value" id="stat-companies">-</div>
-      </div>
-      <div class="llm-summary-card">
-        <div class="llm-summary-card__label">模型家族</div>
-        <div class="llm-summary-card__value" id="stat-families">-</div>
-      </div>
-      <div class="llm-summary-card">
-        <div class="llm-summary-card__label">时间节点</div>
-        <div class="llm-summary-card__value" id="stat-records">-</div>
-      </div>
-    </div>
-  </section>
+  <div id="timeline-table-root"></div>
 
-  <!-- 顶部控制栏 -->
-  <section class="llm-toolbar">
-    <div class="llm-toolbar__left">
-      <div class="llm-view-switch">
-        <button class="llm-view-switch__btn is-active" type="button">全局总览</button>
-        <button class="llm-view-switch__btn" type="button">年度聚焦</button>
-        <button class="llm-view-switch__btn" type="button">公司对比</button>
-        <button class="llm-view-switch__btn" type="button">单公司</button>
-      </div>
-    </div>
-
-    <div class="llm-toolbar__right">
-      <select class="llm-select" id="year-select">
-        <option value="all">全部年份</option>
-      </select>
-
-      <select class="llm-select" id="company-select">
-        <option value="all">全部公司</option>
-      </select>
-
-      <input
-        class="llm-search"
-        id="overview-search"
-        type="search"
-        placeholder="搜索模型 / 公司 / 论文..."
-      >
-    </div>
-  </section>
-
-  <!-- 统计区 -->
-  <section class="llm-stats-grid" id="overview-stats-grid">
-    <article class="llm-stat-card">
-      <div class="llm-stat-card__label">当前数据范围</div>
-      <div class="llm-stat-card__value" id="range-text">-</div>
-      <div class="llm-stat-card__desc">用于快速判断资料覆盖区间</div>
-    </article>
-
-    <article class="llm-stat-card">
-      <div class="llm-stat-card__label">当前活跃公司</div>
-      <div class="llm-stat-card__value" id="active-companies-text">-</div>
-      <div class="llm-stat-card__desc">第一屏只展示总览，不展开细节</div>
-    </article>
-
-    <article class="llm-stat-card">
-      <div class="llm-stat-card__label">当前最新节点</div>
-      <div class="llm-stat-card__value" id="latest-model-text">-</div>
-      <div class="llm-stat-card__desc" id="latest-model-desc">-</div>
-    </article>
-  </section>
-
-  <!-- 年份总览 -->
-  <section class="llm-year-overview">
-    <div class="llm-section-head">
-      <div>
-        <p class="llm-section-head__eyebrow">Overview</p>
-        <h2 class="llm-section-head__title">年份总览</h2>
-      </div>
-      <p class="llm-section-head__desc">
-        一眼看不同年份的密度、活跃公司数和代表节点。
-      </p>
-    </div>
-
-    <div class="llm-year-strip" id="year-strip"></div>
+  <section class="llm-schema">
+    <h2>最终数据组织形式</h2>
+    <p>请将数据维护在 <code>_data/llm_timeline.json</code> 中，严格保持下面这组字段。</p>
+<pre><code>[
+  {
+    "date": "2024-12-26",
+    "company": "DeepSeek",
+    "modelName": "DeepSeek-V3",
+    "modality": "LLM",
+    "link": "https://arxiv.org/abs/2412.19437",
+    "notes": "可选"
+  }
+]</code></pre>
+    <p><strong>注意：</strong> JSON 的最后一个字段后面不能带多余逗号，否则 GitHub Pages / Jekyll 构建会失败。</p>
   </section>
 </div>
 

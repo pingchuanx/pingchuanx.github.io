@@ -3,9 +3,7 @@
     "date": "2024-12-26",
     "company": "DeepSeek",
     "modelName": "DeepSeek-V3",
-    "family": "DeepSeek-V 系列",
     "modality": "LLM",
-    "paperTitle": "DeepSeek-V3 Technical Report",
     "link": "https://arxiv.org/abs/2412.19437",
     "notes": "已按你当前提供的数据初始化，可继续补充上下文与版本信息。"
   },
@@ -13,20 +11,14 @@
     "date": "2024-08-30",
     "company": "Alibaba",
     "modelName": "Qwen2-VL",
-    "family": "Qwen 系列",
     "modality": "VLM",
-    "paperTitle": "Qwen2-VL Technical Report",
     "link": "https://arxiv.org/abs/2409.12191",
-    "notes": "建议后续把 company 与 family 命名进一步统一，例如 company 用 Alibaba Cloud 或 Qwen Team。"
   },
   {
     "date": "2025-01-20",
     "company": "DeepSeek",
     "modelName": "DeepSeek-R1",
-    "family": "DeepSeek-R 系列",
     "modality": "LLM",
-    "paperTitle": "DeepSeek-R1",
     "link": "https://github.com/deepseek-ai/DeepSeek-R1",
-    "notes": "当前链接为项目页；后续可补充论文、博客或技术说明。"
   }
 ]
