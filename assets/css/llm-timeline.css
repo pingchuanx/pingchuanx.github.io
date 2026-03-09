@@ -21,6 +21,10 @@
   margin-bottom: 0.65rem;
 }
 
+.llm-filter-section {
+  margin-top: 1rem;
+}
+
 .llm-company-filters {
   display: flex;
   flex-wrap: wrap;

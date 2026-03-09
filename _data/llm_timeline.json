@@ -1,24 +1,401 @@
 [
   {
+    "date": "2023-03-01",
+    "company": "OpenAI",
+    "modelName": "GPT-3.5-Turbo",
+    "modality": "LLM",
+    "link": "https://openai.com/index/introducing-chatgpt-and-whisper-apis/"
+  },
+  {
+    "date": "2023-03-14",
+    "company": "OpenAI",
+    "modelName": "GPT-4",
+    "modality": "MLLM",
+    "link": "https://openai.com/index/gpt-4-research/"
+  },
+  {
+    "date": "2023-09-20",
+    "company": "Intern",
+    "modelName": "InternLM-20B",
+    "modality": "LLM",
+    "link": "https://github.com/InternLM/InternLM"
+  },
+  {
+    "date": "2023-11-03",
+    "company": "xAI",
+    "modelName": "Grok-1",
+    "modality": "LLM",
+    "link": "https://x.ai/news/grok"
+  },
+  {
+    "date": "2023-11-06",
+    "company": "OpenAI",
+    "modelName": "GPT-4-Turbo",
+    "modality": "MLLM",
+    "link": "https://openai.com/index/new-models-and-developer-products-announced-at-devday/"
+  },
+  {
+    "date": "2023-11-15",
+    "company": "DeepSeek",
+    "modelName": "DeepSeek-LLM",
+    "modality": "LLM",
+    "link": "https://github.com/deepseek-ai/DeepSeek-LLM"
+  },
+  {
+    "date": "2023-12-06",
+    "company": "Google",
+    "modelName": "Gemini 1.0",
+    "modality": "MLLM",
+    "link": "https://blog.google/innovation-and-ai/technology/ai/google-gemini-ai/"
+  },
+  {
+    "date": "2024-01-17",
+    "company": "Intern",
+    "modelName": "InternLM2",
+    "modality": "LLM",
+    "link": "https://github.com/InternLM/InternLM"
+  },
+  {
+    "date": "2024-01-23",
+    "company": "Alibaba",
+    "modelName": "Qwen",
+    "modality": "LLM",
+    "link": "https://qwenlm.github.io/blog/qwen/"
+  },
+  {
+    "date": "2024-01-23",
+    "company": "Intern",
+    "modelName": "InternLM2-Math",
+    "modality": "LLM",
+    "link": "https://github.com/InternLM/InternLM-Math"
+  },
+  {
+    "date": "2024-01-24",
+    "company": "Intern",
+    "modelName": "InternVL-Chat-V1.1",
+    "modality": "MLLM",
+    "link": "https://github.com/OpenGVLab/InternVL"
+  },
+  {
+    "date": "2024-01-25",
+    "company": "Alibaba",
+    "modelName": "Qwen-VL",
+    "modality": "VLM",
+    "link": "https://qwenlm.github.io/blog/qwen-vl/"
+  },
+  {
+    "date": "2024-02-04",
+    "company": "Alibaba",
+    "modelName": "Qwen1.5",
+    "modality": "LLM",
+    "link": "https://qwenlm.github.io/blog/qwen1.5/"
+  },
+  {
+    "date": "2024-02-15",
+    "company": "Google",
+    "modelName": "Gemini 1.5 Pro",
+    "modality": "MLLM",
+    "link": "https://blog.google/innovation-and-ai/products/google-gemini-next-generation-model-february-2024/"
+  },
+  {
+    "date": "2024-03-11",
+    "company": "DeepSeek",
+    "modelName": "DeepSeek-VL",
+    "modality": "VLM",
+    "link": "https://arxiv.org/abs/2403.05525"
+  },
+  {
+    "date": "2024-03-28",
+    "company": "xAI",
+    "modelName": "Grok-1.5",
+    "modality": "LLM",
+    "link": "https://x.ai/news/grok-1.5"
+  },
+  {
+    "date": "2024-04-12",
+    "company": "xAI",
+    "modelName": "Grok-1.5V",
+    "modality": "VLM",
+    "link": "https://x.ai/news/grok-1.5v"
+  },
+  {
+    "date": "2024-04-16",
+    "company": "Alibaba",
+    "modelName": "CodeQwen1.5",
+    "modality": "CodeLLM",
+    "link": "https://qwenlm.github.io/blog/codeqwen1.5/"
+  },
+  {
+    "date": "2024-04-18",
+    "company": "Intern",
+    "modelName": "InternVL-Chat-V1.5",
+    "modality": "MLLM",
+    "link": "https://github.com/OpenGVLab/InternVL"
+  },
+  {
+    "date": "2024-05-06",
+    "company": "DeepSeek",
+    "modelName": "DeepSeek-V2",
+    "modality": "LLM",
+    "link": "https://github.com/deepseek-ai/DeepSeek-V2"
+  },
+  {
+    "date": "2024-05-13",
+    "company": "OpenAI",
+    "modelName": "GPT-4o",
+    "modality": "MLLM",
+    "link": "https://openai.com/index/hello-gpt-4o/"
+  },
+  {
+    "date": "2024-05-14",
+    "company": "Google",
+    "modelName": "Gemini 1.5 Flash",
+    "modality": "MLLM",
+    "link": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-gemma-developer-updates-may-2024/"
+  },
+  {
+    "date": "2024-06-07",
+    "company": "Alibaba",
+    "modelName": "Qwen2",
+    "modality": "LLM",
+    "link": "https://qwenlm.github.io/blog/qwen2/"
+  },
+  {
+    "date": "2024-06-17",
+    "company": "DeepSeek",
+    "modelName": "DeepSeek-Coder-V2",
+    "modality": "CodeLLM",
+    "link": "https://arxiv.org/abs/2406.11931"
+  },
+  {
+    "date": "2024-07-03",
+    "company": "Intern",
+    "modelName": "InternLM2.5",
+    "modality": "LLM",
+    "link": "https://github.com/InternLM/InternLM"
+  },
+  {
+    "date": "2024-07-04",
+    "company": "Intern",
+    "modelName": "InternVL2",
+    "modality": "MLLM",
+    "link": "https://github.com/OpenGVLab/InternVL"
+  },
+  {
+    "date": "2024-08-09",
+    "company": "Alibaba",
+    "modelName": "Qwen2-Audio",
+    "modality": "AudioLM",
+    "link": "https://qwenlm.github.io/blog/qwen2-audio/"
+  },
+  {
+    "date": "2024-08-13",
+    "company": "xAI",
+    "modelName": "Grok-2",
+    "modality": "LLM",
+    "link": "https://x.ai/news/grok-2"
+  },
+  {
+    "date": "2024-08-29",
+    "company": "Alibaba",
+    "modelName": "Qwen2-VL",
+    "modality": "VLM",
+    "link": "https://qwenlm.github.io/blog/qwen2-vl/"
+  },
+  {
+    "date": "2024-09-05",
+    "company": "DeepSeek",
+    "modelName": "DeepSeek-V2.5",
+    "modality": "LLM",
+    "link": "https://api-docs.deepseek.com/news/news0905"
+  },
+  {
+    "date": "2024-09-19",
+    "company": "Alibaba",
+    "modelName": "Qwen2.5",
+    "modality": "LLM",
+    "link": "https://qwenlm.github.io/blog/qwen2.5/"
+  },
+  {
+    "date": "2024-11-13",
+    "company": "DeepSeek",
+    "modelName": "JanusFlow",
+    "modality": "MLLM",
+    "link": "https://github.com/deepseek-ai/Janus"
+  },
+  {
+    "date": "2024-11-20",
+    "company": "DeepSeek",
+    "modelName": "DeepSeek-R1-Lite-Preview",
+    "modality": "LLM",
+    "link": "https://api-docs.deepseek.com/news/news1120"
+  },
+  {
+    "date": "2024-11-28",
+    "company": "Alibaba",
+    "modelName": "QwQ-32B-Preview",
+    "modality": "LLM",
+    "link": "https://qwenlm.github.io/blog/qwq-32b-preview/"
+  },
+  {
+    "date": "2024-12-05",
+    "company": "Intern",
+    "modelName": "InternVL2.5",
+    "modality": "MLLM",
+    "link": "https://internvl.github.io/blog/2024-12-05-InternVL-2.5/"
+  },
+  {
+    "date": "2024-12-11",
+    "company": "Google",
+    "modelName": "Gemini 2.0 Flash",
+    "modality": "MLLM",
+    "link": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/google-gemini-ai-update-december-2024/"
+  },
+  {
+    "date": "2024-12-12",
+    "company": "xAI",
+    "modelName": "Grok-2-1212",
+    "modality": "LLM",
+    "link": "https://x.ai/news/grok-1212"
+  },
+  {
+    "date": "2024-12-13",
+    "company": "DeepSeek",
+    "modelName": "DeepSeek-VL2",
+    "modality": "VLM",
+    "link": "https://arxiv.org/abs/2412.10302"
+  },
+  {
     "date": "2024-12-26",
     "company": "DeepSeek",
     "modelName": "DeepSeek-V3",
     "modality": "LLM",
-    "link": "https://arxiv.org/abs/2412.19437",
-    "notes": "已按你当前提供的数据初始化，可继续补充上下文与版本信息。"
+    "link": "https://api-docs.deepseek.com/news/news1226"
   },
   {
-    "date": "2024-08-30",
-    "company": "Alibaba",
-    "modelName": "Qwen2-VL",
-    "modality": "VLM",
-    "link": "https://arxiv.org/abs/2409.12191",
+    "date": "2025-01-15",
+    "company": "Intern",
+    "modelName": "InternLM3",
+    "modality": "LLM",
+    "link": "https://github.com/InternLM/InternLM"
   },
   {
     "date": "2025-01-20",
     "company": "DeepSeek",
     "modelName": "DeepSeek-R1",
     "modality": "LLM",
-    "link": "https://github.com/deepseek-ai/DeepSeek-R1",
+    "link": "https://github.com/deepseek-ai/DeepSeek-R1"
+  },
+  {
+    "date": "2025-01-26",
+    "company": "Alibaba",
+    "modelName": "Qwen2.5-VL",
+    "modality": "VLM",
+    "link": "https://qwenlm.github.io/blog/qwen2.5-vl/"
+  },
+  {
+    "date": "2025-01-27",
+    "company": "DeepSeek",
+    "modelName": "Janus-Pro",
+    "modality": "MLLM",
+    "link": "https://github.com/deepseek-ai/Janus"
+  },
+  {
+    "date": "2025-01-28",
+    "company": "Alibaba",
+    "modelName": "Qwen2.5-Max",
+    "modality": "LLM",
+    "link": "https://qwenlm.github.io/blog/qwen2.5-max/"
+  },
+  {
+    "date": "2025-02-05",
+    "company": "Google",
+    "modelName": "Gemini 2.0 Pro Experimental",
+    "modality": "MLLM",
+    "link": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-model-updates-february-2025/"
+  },
+  {
+    "date": "2025-02-19",
+    "company": "xAI",
+    "modelName": "Grok-3",
+    "modality": "LLM",
+    "link": "https://x.ai/news/grok-3"
+  },
+  {
+    "date": "2025-02-27",
+    "company": "OpenAI",
+    "modelName": "GPT-4.5",
+    "modality": "LLM",
+    "link": "https://openai.com/index/introducing-gpt-4-5/"
+  },
+  {
+    "date": "2025-03-06",
+    "company": "Alibaba",
+    "modelName": "QwQ-32B",
+    "modality": "LLM",
+    "link": "https://qwenlm.github.io/blog/qwq-32b/"
+  },
+  {
+    "date": "2025-03-25",
+    "company": "Google",
+    "modelName": "Gemini 2.5 Pro",
+    "modality": "MLLM",
+    "link": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/gemini-model-thinking-updates-march-2025/"
+  },
+  {
+    "date": "2025-03-27",
+    "company": "Alibaba",
+    "modelName": "Qwen2.5-Omni",
+    "modality": "MLLM",
+    "link": "https://qwenlm.github.io/blog/qwen2.5-omni/"
+  },
+  {
+    "date": "2025-04-14",
+    "company": "OpenAI",
+    "modelName": "GPT-4.1",
+    "modality": "MLLM",
+    "link": "https://openai.com/index/gpt-4-1/"
+  },
+  {
+    "date": "2025-04-29",
+    "company": "Alibaba",
+    "modelName": "Qwen3",
+    "modality": "LLM",
+    "link": "https://qwenlm.github.io/blog/qwen3/"
+  },
+  {
+    "date": "2025-06-17",
+    "company": "Google",
+    "modelName": "Gemini 2.5 Flash",
+    "modality": "MLLM",
+    "link": "https://blog.google/products-and-platforms/products/gemini/gemini-2-5-model-family-expands/"
+  },
+  {
+    "date": "2025-07-09",
+    "company": "xAI",
+    "modelName": "Grok-4",
+    "modality": "LLM",
+    "link": "https://x.ai/news/grok-4"
+  },
+  {
+    "date": "2025-08-07",
+    "company": "OpenAI",
+    "modelName": "GPT-5",
+    "modality": "LLM",
+    "link": "https://openai.com/index/introducing-gpt-5/"
+  },
+  {
+    "date": "2025-08-21",
+    "company": "DeepSeek",
+    "modelName": "DeepSeek-V3.1",
+    "modality": "LLM",
+    "link": "https://api-docs.deepseek.com/news/news250821"
+  },
+  {
+    "date": "2025-11-17",
+    "company": "xAI",
+    "modelName": "Grok-4.1",
+    "modality": "LLM",
+    "link": "https://x.ai/news/grok-4-1"
   }
 ]

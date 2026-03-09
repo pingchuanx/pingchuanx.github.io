@@ -1,6 +1,8 @@
 
 (function () {
   const rawData = Array.isArray(window.LLM_TIMELINE_DATA) ? window.LLM_TIMELINE_DATA : [];
+  const modalityOptions = ['LLM', 'VLM', 'VLA', 'Omni'];
+
   const normalized = rawData
     .map(item => ({
       date: item.date || '',
@@ -15,9 +17,11 @@
 
   const allCompanies = [...new Set(normalized.map(item => item.company))].sort((a, b) => a.localeCompare(b));
   const selectedCompanies = new Set(allCompanies);
+  const selectedModalities = new Set(modalityOptions);
 
   const els = {
     companyFilters: document.getElementById('company-filters'),
+    modalityFilters: document.getElementById('modality-filters'),
     resultCount: document.getElementById('result-count'),
     tableRoot: document.getElementById('timeline-table-root'),
     selectAllBtn: document.getElementById('select-all-companies'),
@@ -26,26 +30,30 @@
   };
 
   renderCompanyFilters();
+  renderModalityFilters();
   bindEvents();
   render();
 
   function bindEvents() {
     els.selectAllBtn.addEventListener('click', function () {
       allCompanies.forEach(company => selectedCompanies.add(company));
-      syncCheckboxes();
+      syncCheckboxes(els.companyFilters, selectedCompanies);
       render();
     });
 
     els.clearBtn.addEventListener('click', function () {
       selectedCompanies.clear();
-      syncCheckboxes();
+      syncCheckboxes(els.companyFilters, selectedCompanies);
       render();
     });
 
     els.resetBtn.addEventListener('click', function () {
       selectedCompanies.clear();
       allCompanies.forEach(company => selectedCompanies.add(company));
-      syncCheckboxes();
+      selectedModalities.clear();
+      modalityOptions.forEach(modality => selectedModalities.add(modality));
+      syncCheckboxes(els.companyFilters, selectedCompanies);
+      syncCheckboxes(els.modalityFilters, selectedModalities);
       render();
     });
   }
@@ -61,8 +69,7 @@
         <input type="checkbox" id="${id}" value="${escapeHtml(company)}" checked>
         <span>${escapeHtml(company)}</span>
       `;
-      const input = label.querySelector('input');
-      input.addEventListener('change', function (event) {
+      label.querySelector('input').addEventListener('change', function (event) {
         if (event.target.checked) {
           selectedCompanies.add(company);
         } else {
@@ -74,15 +81,38 @@
     });
   }
 
-  function syncCheckboxes() {
-    els.companyFilters.querySelectorAll('input[type="checkbox"]').forEach(input => {
-      input.checked = selectedCompanies.has(input.value);
+  function renderModalityFilters() {
+    els.modalityFilters.innerHTML = '';
+    modalityOptions.forEach(modality => {
+      const id = `modality-${slugify(modality)}`;
+      const label = document.createElement('label');
+      label.className = 'llm-chip';
+      label.setAttribute('for', id);
+      label.innerHTML = `
+        <input type="checkbox" id="${id}" value="${escapeHtml(modality)}" checked>
+        <span>${escapeHtml(modality)}</span>
+      `;
+      label.querySelector('input').addEventListener('change', function (event) {
+        if (event.target.checked) {
+          selectedModalities.add(modality);
+        } else {
+          selectedModalities.delete(modality);
+        }
+        render();
+      });
+      els.modalityFilters.appendChild(label);
+    });
+  }
+
+  function syncCheckboxes(container, selectedSet) {
+    container.querySelectorAll('input[type="checkbox"]').forEach(input => {
+      input.checked = selectedSet.has(input.value);
     });
   }
 
   function render() {
     const companies = allCompanies.filter(company => selectedCompanies.has(company));
-    const items = normalized.filter(item => selectedCompanies.has(item.company));
+    const items = normalized.filter(item => selectedCompanies.has(item.company) && selectedModalities.has(item.modality));
     els.resultCount.textContent = `当前显示 ${companies.length} 家公司，${items.length} 条记录`;
 
     if (!companies.length) {
@@ -90,8 +120,13 @@
       return;
     }
 
+    if (!selectedModalities.size) {
+      els.tableRoot.innerHTML = '<div class="llm-empty">请至少勾选一个模态。</div>';
+      return;
+    }
+
     if (!items.length) {
-      els.tableRoot.innerHTML = '<div class="llm-empty">当前所选公司下还没有记录。</div>';
+      els.tableRoot.innerHTML = '<div class="llm-empty">当前筛选条件下还没有记录。</div>';
       return;
     }
 
