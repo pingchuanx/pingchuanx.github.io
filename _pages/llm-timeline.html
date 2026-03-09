@@ -1,0 +1,83 @@
+---
+title: "LLM Timeline"
+permalink: /llm-timeline/
+layout: single
+author_profile: true
+---
+
+<link rel="stylesheet" href="{{ '/assets/css/llm-timeline.css' | relative_url }}">
+
+<div class="llm-timeline-page">
+  <p class="llm-timeline-lead">
+    This page turns your structured model records into a reusable research timeline. It supports both a unified cross-company view and a grouped company view, while keeping the data source separate from the page presentation.
+  </p>
+
+  <div class="llm-timeline-panel">
+    <div class="llm-timeline-grid">
+      <fieldset class="llm-timeline-mode llm-timeline-field">
+        <legend>Display mode</legend>
+        <div class="llm-timeline-mode-options">
+          <label><input type="radio" name="timeline-layout" value="combined" checked> Combined timeline</label>
+          <label><input type="radio" name="timeline-layout" value="grouped"> Grouped by company</label>
+        </div>
+      </fieldset>
+
+      <div class="llm-timeline-field">
+        <label for="timeline-search">Search</label>
+        <input id="timeline-search" type="search" placeholder="Search model, family, paper, company, notes...">
+      </div>
+
+      <div class="llm-timeline-field">
+        <label for="timeline-sort">Sort by date</label>
+        <select id="timeline-sort">
+          <option value="desc">Newest first</option>
+          <option value="asc">Oldest first</option>
+        </select>
+      </div>
+    </div>
+
+    <div style="margin-top: 1rem;">
+      <div class="llm-timeline-checkbox-group-title">Companies</div>
+      <div id="company-filters" class="llm-timeline-checkboxes"></div>
+      <div style="margin-top: 0.75rem;" class="llm-actions">
+        <button id="select-all-companies" class="llm-button" type="button">Toggle all companies</button>
+      </div>
+    </div>
+
+    <div style="margin-top: 1rem;">
+      <div class="llm-timeline-checkbox-group-title">Modalities</div>
+      <div id="modality-filters" class="llm-timeline-checkboxes"></div>
+    </div>
+  </div>
+
+  <div class="llm-toolbar">
+    <div class="llm-toolbar-meta" id="result-count">0 records</div>
+    <div class="llm-actions">
+      <button id="reset-filters" class="llm-button" type="button">Reset filters</button>
+    </div>
+  </div>
+
+  <div id="timeline-root"></div>
+
+  <section class="llm-schema">
+    <h2>Recommended data schema</h2>
+    <p>
+      Edit <code>_data/llm_timeline.json</code> to maintain the timeline. The current page already supports your simplified JSON format, but the following schema is more suitable for long-term growth:
+    </p>
+<pre><code>{
+  "date": "2025-01-20",
+  "company": "DeepSeek",
+  "modelName": "DeepSeek-R1",
+  "family": "DeepSeek-R 系列",
+  "modality": "LLM",
+  "paperTitle": "DeepSeek-R1",
+  "link": "https://github.com/deepseek-ai/DeepSeek-R1",
+  "notes": "Optional notes"
+}</code></pre>
+  </section>
+</div>
+
+<script>
+  window.LLM_TIMELINE_DATA = {{ site.data.llm_timeline | jsonify }};
+</script>
+<script src="{{ '/assets/js/llm-timeline.js' | relative_url }}"></script>
