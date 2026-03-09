@@ -1,224 +1,178 @@
 (function () {
-  const rawData = Array.isArray(window.LLM_TIMELINE_DATA) ? window.LLM_TIMELINE_DATA : [];
-  const state = {
-    layout: 'combined',
-    companies: new Set(),
-    modalities: new Set(),
-    search: '',
-    sort: 'desc'
-  };
+  const raw = Array.isArray(window.LLM_TIMELINE_DATA) ? window.LLM_TIMELINE_DATA : [];
+
+  const data = raw
+    .map(normalizeItem)
+    .filter(item => item.dateObj && !Number.isNaN(item.dateObj.valueOf()))
+    .sort((a, b) => b.dateObj - a.dateObj);
 
   const els = {
-    companyFilters: document.getElementById('company-filters'),
-    modalityFilters: document.getElementById('modality-filters'),
-    searchInput: document.getElementById('timeline-search'),
-    sortSelect: document.getElementById('timeline-sort'),
-    resultCount: document.getElementById('result-count'),
-    timelineRoot: document.getElementById('timeline-root'),
-    resetButton: document.getElementById('reset-filters'),
-    selectAllButton: document.getElementById('select-all-companies')
+    yearSelect: document.getElementById('year-select'),
+    companySelect: document.getElementById('company-select'),
+    searchInput: document.getElementById('overview-search'),
+    yearStrip: document.getElementById('year-strip'),
+
+    statYears: document.getElementById('stat-years'),
+    statCompanies: document.getElementById('stat-companies'),
+    statFamilies: document.getElementById('stat-families'),
+    statRecords: document.getElementById('stat-records'),
+
+    rangeText: document.getElementById('range-text'),
+    activeCompaniesText: document.getElementById('active-companies-text'),
+    latestModelText: document.getElementById('latest-model-text'),
+    latestModelDesc: document.getElementById('latest-model-desc')
   };
 
-  const normalized = rawData
-    .map(normalizeItem)
-    .filter(item => item.dateValue instanceof Date && !Number.isNaN(item.dateValue.valueOf()));
+  const state = {
+    year: 'all',
+    company: 'all',
+    search: ''
+  };
 
-  const allCompanies = uniqueValues(normalized.map(item => item.company));
-  const allModalities = uniqueValues(normalized.map(item => item.modality));
-  allCompanies.forEach(v => state.companies.add(v));
-  allModalities.forEach(v => state.modalities.add(v));
+  init();
 
-  renderFilterChips(els.companyFilters, allCompanies, state.companies, 'company');
-  renderFilterChips(els.modalityFilters, allModalities, state.modalities, 'modality');
-
-  document.querySelectorAll('input[name="timeline-layout"]').forEach(radio => {
-    radio.addEventListener('change', function (event) {
-      state.layout = event.target.value;
-      render();
-    });
-  });
-
-  els.searchInput.addEventListener('input', function (event) {
-    state.search = event.target.value.trim().toLowerCase();
+  function init() {
+    populateFilters();
+    bindEvents();
     render();
-  });
-
-  els.sortSelect.addEventListener('change', function (event) {
-    state.sort = event.target.value;
-    render();
-  });
-
-  els.resetButton.addEventListener('click', function () {
-    state.search = '';
-    state.sort = 'desc';
-    state.companies = new Set(allCompanies);
-    state.modalities = new Set(allModalities);
-    els.searchInput.value = '';
-    els.sortSelect.value = 'desc';
-    syncCheckboxes('company', state.companies);
-    syncCheckboxes('modality', state.modalities);
-    document.querySelector('input[name="timeline-layout"][value="combined"]').checked = true;
-    state.layout = 'combined';
-    render();
-  });
-
-  els.selectAllButton.addEventListener('click', function () {
-    if (state.companies.size === allCompanies.length) {
-      state.companies.clear();
-    } else {
-      allCompanies.forEach(v => state.companies.add(v));
-    }
-    syncCheckboxes('company', state.companies);
-    render();
-  });
-
-  render();
+  }
 
   function normalizeItem(item) {
     const date = item.date || '';
-    const dateValue = new Date(date + 'T00:00:00');
+    const dateObj = new Date(date + 'T00:00:00');
     return {
       date,
-      dateValue,
-      dateLabel: formatDate(dateValue),
-      year: dateValue.getFullYear(),
+      dateObj,
+      year: String(dateObj.getFullYear()),
       company: item.company || 'Unknown',
-      modelName: item.modelName || 'Untitled model',
-      family: item.family || '',
+      modelName: item.modelName || 'Untitled',
+      family: item.family || 'Uncategorized',
       modality: item.modality || 'Unknown',
-      paperTitle: item.paperTitle || item.modelName || '',
+      paperTitle: item.paperTitle || '',
       link: item.link || '',
       notes: item.notes || ''
     };
   }
 
-  function uniqueValues(values) {
-    return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
-  }
+  function populateFilters() {
+    const years = unique(data.map(d => d.year)).sort((a, b) => Number(b) - Number(a));
+    const companies = unique(data.map(d => d.company)).sort((a, b) => a.localeCompare(b));
 
-  function renderFilterChips(container, values, activeSet, kind) {
-    container.innerHTML = '';
-    values.forEach(value => {
-      const id = `${kind}-${slugify(value)}`;
-      const label = document.createElement('label');
-      label.className = 'llm-chip';
-      label.setAttribute('for', id);
-      label.innerHTML = `
-        <input type="checkbox" id="${id}" data-kind="${kind}" value="${escapeHtml(value)}" checked>
-        <span>${escapeHtml(value)}</span>
-      `;
-      const input = label.querySelector('input');
-      input.addEventListener('change', handleChipChange);
-      container.appendChild(label);
+    years.forEach(year => {
+      const option = document.createElement('option');
+      option.value = year;
+      option.textContent = year;
+      els.yearSelect.appendChild(option);
+    });
+
+    companies.forEach(company => {
+      const option = document.createElement('option');
+      option.value = company;
+      option.textContent = company;
+      els.companySelect.appendChild(option);
     });
   }
 
-  function handleChipChange(event) {
-    const value = event.target.value;
-    const kind = event.target.dataset.kind;
-    const targetSet = kind === 'company' ? state.companies : state.modalities;
-    if (event.target.checked) {
-      targetSet.add(value);
-    } else {
-      targetSet.delete(value);
-    }
-    render();
-  }
+  function bindEvents() {
+    els.yearSelect.addEventListener('change', e => {
+      state.year = e.target.value;
+      render();
+    });
 
-  function syncCheckboxes(kind, activeSet) {
-    document.querySelectorAll(`input[data-kind="${kind}"]`).forEach(input => {
-      input.checked = activeSet.has(input.value);
+    els.companySelect.addEventListener('change', e => {
+      state.company = e.target.value;
+      render();
+    });
+
+    els.searchInput.addEventListener('input', e => {
+      state.search = e.target.value.trim().toLowerCase();
+      render();
     });
   }
 
-  function getFilteredItems() {
-    const filtered = normalized.filter(item => {
-      const companyPass = state.companies.has(item.company);
-      const modalityPass = state.modalities.has(item.modality);
-      const haystack = [item.modelName, item.company, item.family, item.modality, item.paperTitle, item.notes]
-        .join(' ')
-        .toLowerCase();
-      const searchPass = !state.search || haystack.includes(state.search);
-      return companyPass && modalityPass && searchPass;
-    });
+  function getFilteredData() {
+    return data.filter(item => {
+      const yearPass = state.year === 'all' ? true : item.year === state.year;
+      const companyPass = state.company === 'all' ? true : item.company === state.company;
+      const haystack = [
+        item.modelName,
+        item.company,
+        item.family,
+        item.modality,
+        item.paperTitle,
+        item.notes
+      ].join(' ').toLowerCase();
 
-    filtered.sort((a, b) => {
-      const diff = a.dateValue - b.dateValue;
-      return state.sort === 'asc' ? diff : -diff;
-    });
+      const searchPass = state.search ? haystack.includes(state.search) : true;
 
-    return filtered;
+      return yearPass && companyPass && searchPass;
+    });
   }
 
   function render() {
-    const items = getFilteredItems();
-    els.resultCount.textContent = `${items.length} record${items.length === 1 ? '' : 's'}`;
+    const filtered = getFilteredData();
+    renderStats(filtered);
+    renderYearStrip(filtered);
+  }
 
-    if (!items.length) {
-      els.timelineRoot.innerHTML = '<div class="llm-empty">No records match the current filters. Try resetting the company, modality, or keyword filters.</div>';
+  function renderStats(list) {
+    const years = unique(list.map(d => d.year)).sort((a, b) => Number(a) - Number(b));
+    const companies = unique(list.map(d => d.company));
+    const families = unique(list.map(d => d.family));
+    const latest = list[0];
+
+    els.statYears.textContent = years.length ? `${years[0]}–${years[years.length - 1]}` : '-';
+    els.statCompanies.textContent = companies.length;
+    els.statFamilies.textContent = families.length;
+    els.statRecords.textContent = list.length;
+
+    els.rangeText.textContent = years.length ? `${years[0]} – ${years[years.length - 1]}` : '-';
+    els.activeCompaniesText.textContent = companies.length ? companies.join(' / ') : '-';
+
+    if (latest) {
+      els.latestModelText.textContent = latest.modelName;
+      els.latestModelDesc.textContent = `${latest.date} · ${latest.company}`;
+    } else {
+      els.latestModelText.textContent = '-';
+      els.latestModelDesc.textContent = '-';
+    }
+  }
+
+  function renderYearStrip(list) {
+    const grouped = groupBy(list, item => item.year);
+    const years = Object.keys(grouped).sort((a, b) => Number(b) - Number(a));
+
+    if (!years.length) {
+      els.yearStrip.innerHTML = `<div class="llm-year-card">当前筛选条件下没有结果。</div>`;
       return;
     }
 
-    if (state.layout === 'grouped') {
-      els.timelineRoot.innerHTML = renderGroupedByCompany(items);
-    } else {
-      els.timelineRoot.innerHTML = renderCombined(items);
-    }
-  }
+    els.yearStrip.innerHTML = years.map(year => {
+      const items = grouped[year];
+      const companies = unique(items.map(i => i.company));
+      const reps = items.slice(0, 2).map(i => i.modelName).join(' / ');
 
-  function renderCombined(items) {
-    const byYear = groupBy(items, item => String(item.year));
-    return Object.keys(byYear)
-      .sort((a, b) => state.sort === 'asc' ? Number(a) - Number(b) : Number(b) - Number(a))
-      .map(year => `
-        <section class="llm-year-group">
-          <h2 class="llm-year-heading">${year}</h2>
-          <ol class="llm-list">
-            ${byYear[year].map(renderCardItem).join('')}
-          </ol>
-        </section>
-      `)
-      .join('');
-  }
-
-  function renderGroupedByCompany(items) {
-    const byCompany = groupBy(items, item => item.company);
-    return Object.keys(byCompany)
-      .sort((a, b) => a.localeCompare(b))
-      .map(company => `
-        <section class="llm-company-group">
-          <h2 class="llm-company-heading">${escapeHtml(company)}</h2>
-          ${renderCombined(byCompany[company])}
-        </section>
-      `)
-      .join('');
-  }
-
-  function renderCardItem(item) {
-    return `
-      <li class="llm-item">
-        <article class="llm-card">
-          <div class="llm-card-top">
-            <div>
-              <h3 class="llm-title">${escapeHtml(item.modelName)}</h3>
-              ${item.family ? `<div>${escapeHtml(item.family)}</div>` : ''}
-            </div>
-            <div><strong>${escapeHtml(item.dateLabel)}</strong></div>
+      return `
+        <article class="llm-year-card">
+          <div class="llm-year-card__year">${escapeHtml(year)}</div>
+          <div class="llm-year-card__meta">
+            <span class="llm-pill">${items.length} 节点</span>
+            <span class="llm-pill">${companies.length} 公司</span>
           </div>
-          <div class="llm-meta">
-            <span class="llm-badge">${escapeHtml(item.company)}</span>
-            <span class="llm-badge">${escapeHtml(item.modality)}</span>
+          <div class="llm-year-card__rep">
+            代表节点：${escapeHtml(reps || '-')}
           </div>
-          ${item.paperTitle ? `<p class="llm-paper"><strong>Paper / Report:</strong> ${escapeHtml(item.paperTitle)}</p>` : ''}
-          ${item.link ? `<p><a href="${escapeAttribute(item.link)}" target="_blank" rel="noopener noreferrer">Open reference</a></p>` : ''}
-          ${item.notes ? `<p class="llm-notes">${escapeHtml(item.notes)}</p>` : ''}
         </article>
-      </li>
-    `;
+      `;
+    }).join('');
   }
 
-  function groupBy(items, getKey) {
-    return items.reduce((acc, item) => {
+  function unique(arr) {
+    return [...new Set(arr.filter(Boolean))];
+  }
+
+  function groupBy(arr, getKey) {
+    return arr.reduce((acc, item) => {
       const key = getKey(item);
       acc[key] = acc[key] || [];
       acc[key].push(item);
@@ -226,29 +180,12 @@
     }, {});
   }
 
-  function formatDate(date) {
-    if (!(date instanceof Date) || Number.isNaN(date.valueOf())) return 'Unknown date';
-    return new Intl.DateTimeFormat('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: '2-digit'
-    }).format(date);
-  }
-
-  function slugify(value) {
-    return String(value).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-  }
-
   function escapeHtml(value) {
     return String(value)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
-
-  function escapeAttribute(value) {
-    return escapeHtml(value);
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#039;');
   }
 })();
