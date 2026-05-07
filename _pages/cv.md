@@ -11,54 +11,40 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
 
-Work experience
+* M.Eng. in Artificial Intelligence, Zhejiang University, 2025--2028
+  * GPA: 93.86
+  * Core courses: AI Algorithms and Systems, Machine Learning and Applications, Natural Language Processing, Deep Generative Models and Methods
+* B.Eng. in Computer Science and Technology, Xi'an Jiaotong University, 2021--2025
+  * GPA: 93.44
+
+Research Interests
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Embodied AI
+* LLM agents
+* Planning in open-ended environments
+* Symbolic world modeling
 
 Publications
 ======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
+
+<ul>{% for post in site.publications reversed %}
+  {% include archive-single-cv.html %}
+{% endfor %}</ul>
+
+Honors and Awards
 ======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
+
+* National Second Prize, Contemporary Undergraduate Mathematical Contest in Modeling, November 2023
+* National First Prize, Service Robot Event, China Robot Competition, October 2023
+* National First Prize, National College Student Mechanical Design Innovation Competition, August 2022
+* Principal Investigator, National College Student Innovation and Entrepreneurship Training Program, Excellent Rating, 2023
+* National First Prize, National Simulation Innovation Application Competition, 2022
+
+Contact
 ======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+
+* Email: [pingchuancc@gmail.com](mailto:pingchuancc@gmail.com)
+* Mobile: 18009089940
+* WeChat: pingchuan13
