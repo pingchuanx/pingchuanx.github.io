@@ -198,6 +198,7 @@ p {
 #body > div:nth-child(1) { animation-delay: 0.6s; }
 #body > div:nth-child(2) { animation-delay: 0.8s; }
 #body > div:nth-child(3) { animation-delay: 1.0s; }
+#body > div:nth-child(4) { animation-delay: 1.2s; }
 
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
@@ -233,6 +234,47 @@ p {
 }
 
 .biography-content p:last-child { margin-bottom: 0; }
+
+/* ---------- Education ---------- */
+.education-list {
+    background: #f8f9fa;
+    padding: 10px 30px;
+    border-radius: 12px;
+    border-left: 4px solid #dee2e6;
+    margin-top: 20px;
+}
+
+.education-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 20px 0;
+}
+
+.education-item + .education-item { border-top: 1px solid #e9ecef; }
+
+.education-date {
+    flex: 0 0 130px;
+    color: #5a6c7d;
+    font-size: 0.95rem;
+    padding-top: 2px;
+}
+
+.education-content { min-width: 0; }
+
+.education-content h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 6px;
+}
+
+.education-content p { margin-bottom: 0; }
+
+.education-content .education-advisor {
+    color: #5a6c7d;
+    margin-top: 4px;
+}
 
 /* ---------- News ---------- */
 .news-container {
@@ -510,6 +552,12 @@ p {
     .email-cv-row, .social-links { justify-content: center; }
 
     #body h2 { font-size: 1.8rem; }
+
+    .education-list { padding: 5px 20px; }
+
+    .education-item { flex-direction: column; gap: 6px; }
+
+    .education-date { flex: none; padding-top: 0; }
 
     .publication-item { flex-direction: column; gap: 15px; }
 
