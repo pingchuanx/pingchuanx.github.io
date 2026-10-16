@@ -15,7 +15,7 @@ libraries, or JavaScript. On small screens, sections and publication entries
 stack vertically. Navigation links preserve the existing section anchors.
 
 ```
-index.html    # Page content (profile, about, publications, education, news)
+index.html    # Page content (profile, about, publications, education)
 style.css     # All styling and responsive layout
 .nojekyll     # Disables Jekyll so the static files are served as-is
 images/       # Profile photo, favicons, and publication thumbnails
@@ -30,7 +30,7 @@ python3 -m http.server 8099
 
 ## Editing
 
-- **About / Publications / Education / News**: edit the corresponding sections in `index.html`.
+- **About / Publications / Education**: edit the corresponding sections in `index.html`.
 - **Styles**: edit `style.css`.
 - **Images**: replace `images/profile.png` with your photo; add publication
   thumbnails to `images/` and reference them in `index.html`.
