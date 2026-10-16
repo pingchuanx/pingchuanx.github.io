@@ -33,4 +33,8 @@ python3 -m http.server 8099
 - **About / Publications / Education**: edit the corresponding sections in `index.html`.
 - **Styles**: edit `style.css`.
 - **Images**: replace `images/profile.png` with your photo; add publication
-  thumbnails to `images/` and reference them in `index.html`.
+  thumbnails to `images/` and reference them in `index.html`. Remove excess outer
+  whitespace from publication previews while keeping all labels and arrows visible.
+  Dyad and SCOPE use inline SVG view boxes to crop the display without changing
+  the source PNGs. Keep a small margin around the content and preserve each
+  preview's natural aspect ratio.

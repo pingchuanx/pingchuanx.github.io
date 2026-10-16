@@ -281,14 +281,14 @@ strong { font-weight: 600; }
 
 .publication-figure {
     display: block;
-    aspect-ratio: 1.5;
     margin-top: 32px;
     border: 1px solid #e5e0d6;
     background: #fff;
     overflow: hidden;
 }
 
-.publication-figure img { width: 100%; height: 100%; object-fit: contain; }
+.publication-figure img,
+.publication-figure svg { display: block; width: 100%; height: auto; }
 
 /* Education */
 
@@ -368,7 +368,7 @@ strong { font-weight: 600; }
     .contact-links { gap: 10px; font-size: 11px; }
     .publication { grid-template-columns: 1fr; gap: 20px; }
     .publication h3 { font-size: 23px; }
-    .publication-figure { order: -1; width: 100%; max-width: 240px; margin: 0; aspect-ratio: 1.8; }
+    .publication-figure { order: -1; width: 100%; max-width: 240px; margin: 0; }
     .publication-authors { font-size: 13px; }
     .education-item { grid-template-columns: 1fr; gap: 6px; }
     .site-footer { align-items: flex-start; font-size: 10px; }
